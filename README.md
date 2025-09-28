@@ -1,36 +1,176 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🥘 Recipe & Meal Planner App
 
-## Getting Started
+![Node.js](https://img.shields.io/badge/node-%3E=18.x-brightgreen?logo=node.js&logoColor=white)  
+![TypeScript](https://img.shields.io/badge/typescript-5.x-blue?logo=typescript&logoColor=white)  
+![Next.js](https://img.shields.io/badge/next.js-14-black?logo=nextdotjs&logoColor=white)  
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)   
+![Last Commit](https://img.shields.io/github/last-commit/hibrahi000/meal_planner)  
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 
-First, run the development server:
+A full-stack web application that helps users create, manage, and plan meals efficiently.  
+Built with **Next.js**, **Node.js**, **TypeScript**, **GraphQL**, and **Hive** for schema monitoring.  
+Future expansion includes **OpenAI integration** for smart meal plan suggestions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## ✨ Features
+
+- 👤 **User Accounts** – Signup, login, and manage personal profiles
+- 📚 **Recipe Management** – Add, update, and delete recipes with ingredients
+- 🗓️ **Meal Planning** – Create meal plans and organize recipes by day/week
+- 🔒 **Authentication** – Secure login with JWT
+- 📊 **GraphQL Hive Integration** – Schema registry & usage monitoring
+- 🤖 **AI-Powered Suggestions (Future)** – Personalized meal plans using OpenAI
+
+---
+
+## 🏗️ Tech Stack
+
+- **Frontend**: Next.js (React + TypeScript)
+- **Backend**: Node.js, Express, Apollo GraphQL
+- **Database**: MongoDB with Mongoose (or Postgres + Prisma if preferred)
+- **Auth**: JWT-based authentication
+- **Monitoring**: GraphQL Hive
+- **Deployment**: Vercel (Frontend) + Render/Heroku (Backend) + MongoDB Atlas
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+├── app/ # Next.js app router pages and layouts
+├── components/ # Reusable React UI components
+├── lib/ # Frontend utilities (API client, auth helpers, etc.)
+├── server/ # Backend (Express + Apollo GraphQL + Hive integration)
+├── styles/ # Global styles and CSS
+├── types/ # Shared TypeScript types (GraphQL, domain models, etc.)
+└── config/ # Environment configs and constants
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🖥️ System Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+         ┌──────────────────────┐
+         │      Frontend        │
+         │   Next.js (React)    │
+         └─────────┬────────────┘
+                   │
+                   ▼
+         ┌──────────────────────┐
+         │      Backend         │
+         │ Express + Apollo GQL │
+         └─────────┬────────────┘
+                   │
+     ┌─────────────┼─────────────┐
+     ▼             ▼             ▼
+┌──────────┐ ┌───────────┐ ┌─────────────┐
+│ Database │ │   Hive     │ │   Auth/JWT  │
+│ MongoDB  │ │ Monitoring │ │  Validation │
+└──────────┘ └───────────┘ └─────────────┘
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1️⃣ Clone the repo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+git clone https://github.com/hibrahi000/meal_planner.git
+cd recipe-meal-planner
+```
 
-## Deploy on Vercel
+### 2️⃣ Install dependencies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3️⃣ Run the backend (GraphQL API)
+
+```bash
+cd src/server
+npm run dev
+```
+
+### 4️⃣ Run the frontend (Next.js)
+
+```bash
+cd src/app
+npm run dev
+```
+
+### 5️⃣ Open in browser
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📊 GraphQL Hive Integration
+
+This project uses [GraphQL Hive](https://the-guild.dev/graphql/hive) to monitor schema changes and query usage.  
+To set it up, add your **HIVE_API_TOKEN** to your `.env` file:
+
+```bash
+HIVE_API_TOKEN=your_token_here
+```
+
+---
+
+## 📦 Example Recipe (XML Format)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe>
+  <id>101</id>
+  <title>Grilled Chicken Salad</title>
+  <description>A healthy grilled chicken salad with avocado and lemon dressing.</description>
+  <ingredients>
+    <ingredient quantity="2" unit="pieces">Chicken Breast</ingredient>
+    <ingredient quantity="1" unit="cup">Mixed Greens</ingredient>
+    <ingredient quantity="1" unit="piece">Avocado</ingredient>
+    <ingredient quantity="2" unit="tbsp">Olive Oil</ingredient>
+    <ingredient quantity="1" unit="tbsp">Lemon Juice</ingredient>
+  </ingredients>
+  <steps>
+    <step>Marinate chicken with olive oil, salt, and pepper.</step>
+    <step>Grill chicken for 6–8 minutes per side until cooked.</step>
+    <step>Slice avocado and mix with greens.</step>
+    <step>Top salad with grilled chicken and drizzle lemon dressing.</step>
+  </steps>
+  <metadata>
+    <prepTime>15 minutes</prepTime>
+    <cookTime>20 minutes</cookTime>
+    <servings>2</servings>
+    <author>Hashmat Ibrahimi</author>
+  </metadata>
+</recipe>
+```
+
+---
+
+## 🔮 Roadmap
+
+- [x] Initial project setup (Next.js + Node.js + GraphQL)
+- [ ] Recipe CRUD operations
+- [ ] Meal planner system
+- [ ] Authentication & authorization
+- [ ] GraphQL Hive monitoring
+- [ ] OpenAI-powered meal suggestions
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 👨‍💻 Author
+
+Built with ❤️ by **[Hashmat Ibrahimi](https://github.com/hibrahi000)**
